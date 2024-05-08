@@ -1,0 +1,7 @@
+name = "projectname"
+compatibility_date = "2024-05-08"
+
+[vars]
+UPSTASH_REDIS_REST_TOKEN = ""
+UPSTASH_REDIS_REST_URL = ""
+

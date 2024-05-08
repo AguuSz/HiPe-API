@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FASTAPI
 
-## Getting Started
+Little project made following this [tutorial](https://youtu.be/2Y3A4deNs9A?si=pqqMvB_pSEO3bE2B). It's a simple API that returns a list of countries based on a user search.
 
-First, run the development server:
+Made with the following technologies:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Hono
+- Redis
+- Next.js
+- Cloudflare workers
+- Upstash
+
+> It's called **fast** because how the way that the data is fetched and returned to the user. It's a simple project that uses redis to fetch data quickly, but also is deployed in Cloudflare workers, that allow you to have it deployed in several locations, improving latency.
+
+## How to make it work
+
+1. Clone the repository
+2. Install dependencies with your prefered package manager (in my case, i used **pnpm**).
+3. Rename `env.example` to `.env` and fill the variables with your own values.
+   - This values are obtained once you create an account in Upstash.
+4. Rename `wrangler.toml.example` to `wrangler.toml` and fill the variables with your own values.
+   - This values are the exact same as in the `.env` file.
+5. Create the following file `/src/lib/constants.ts` and fill it with the following content:
+
+```typescript
+export const baseUrl = "";
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Populate the DB using the script in `/src/lib/seed.ts`.
+7. Deploy the project with `pnpm run deploy`. (It's using a script present in the `package.json` file).
+8. Copy the URL provided and paste it in the `baseUrl` variable in the `constants.ts` file.
+9. Run the project with `pnpm run dev`.
+10. Open your browser and go to `localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Things learned thorughout the project
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Get to know a new technology that looks primising ([Hono](https://hono.dev/)).
+- Get to use [redis](https://redis.io/es/) for the first time.
+- Get to know how to use [Cloudflare workers](https://workers.cloudflare.com/) and the advantages that it provides.
